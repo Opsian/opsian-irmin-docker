@@ -1,0 +1,28 @@
+diff --git a/bench/irmin-pack/dune b/bench/irmin-pack/dune
+index b9e53548d..f773ba3ac 100644
+--- a/bench/irmin-pack/dune
++++ b/bench/irmin-pack/dune
+@@ -6,7 +6,7 @@
+  (preprocess
+   (pps ppx_repr))
+  (libraries irmin-pack irmin-pack.layered irmin-test.bench irmin-layers lwt
+-   unix cmdliner logs memtrace repr ppx_repr bench_common rusage))
++   unix cmdliner logs memtrace repr ppx_repr bench_common rusage opsian))
+ 
+ (library
+  (name bench_common)
+@@ -30,12 +30,12 @@
+   (pps ppx_repr))
+  (libraries irmin-pack irmin-pack.layered irmin-pack.mem irmin-test.bench
+    irmin-layers lwt unix cmdliner logs memtrace repr ppx_repr bench_common
+-   tezos-context-hash-irmin irmin_traces))
++   tezos-context-hash-irmin irmin_traces opsian))
+ 
+ (executable
+  (name trace_stats)
+  (modules trace_stats)
+- (libraries cmdliner irmin_traces))
++ (libraries cmdliner irmin_traces opsian))
+ 
+ ;; Require the executables to compile during tests
+ 
