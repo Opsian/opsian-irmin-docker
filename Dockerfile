@@ -11,14 +11,13 @@ RUN opam install dune
 RUN mkdir ~/.ssh
 RUN touch ~/.ssh
 RUN ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-RUN git clone --recurse-submodules https://github.com/Opsian/opsian-ocaml
+RUN git clone --recurse-submodules --shallow-submodules https://github.com/Opsian/opsian-ocaml
 RUN git clone --recurse-submodules https://github.com/mirage/irmin
 workdir irmin
 # pin and build opsian
 RUN apt install -y autoconf libc6-dev libpthread-stubs0-dev libtool liblzma-dev
 RUN opam pin -y --debug -vv add opsian git+file:///opsian-ocaml#main
 RUN opam install -y --debug -vv opsian
-# TODO: COPY ./irmin.patch .
 RUN opam pin add -yn tezos-context-hash.dev 'vendors/tezos-context-hash/' && \
     opam pin add -yn tezos-context-hash-irmin.dev 'vendors/tezos-context-hash/' && \
     opam pin add -yn ppx_irmin.dev './' && \

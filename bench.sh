@@ -2,6 +2,7 @@
 
 set -eu
 
+sysctl -w kernel.core_pattern="/data/cores/core.%e.%p"
 eval "$(opam env)"
 VER=$(git rev-parse HEAD)
 export OPSIAN_OPTS="apiKey=$OPS_KEY,applicationVersion=$VER,debugLogPath=/data/£{ARGV_0}-£{PID}-irmin-debug.log,agentId=£{ARGV_0}-irmin"
